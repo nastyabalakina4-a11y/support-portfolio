@@ -10,7 +10,7 @@
 - [Норникель — оптимизация маршрутизации заявок](cases/nornickel-process.md)
 - [Страховая — сопровождение договоров ДМС](cases/insurance-dms.md)
 - [Траст — удалённая настройка рабочих мест](cases/trust-workplace.md)
-- [Настройка собственного сервера (Alt Linux)](cases/own-server-setup.md) — в процессе
+- [Настройка собственного сервера (Alt Linux)](cases/own-server-setup/README.md) — в процессе
 
 🛠 Навыки
 - Техническая поддержка (L1/L2)
