@@ -8,13 +8,14 @@
 
 | Этап | Задача | Статус | Файл |
 |---|---|---|---|
-| 0 | Доступ к серверу после оплаты | 🔲 не начато | [00-payment-access.md](00-payment-access.md) |
-| 1 | Первое подключение по SSH | 🔲 не начато | [01-first-connection.md](01-first-connection.md) |
-| 2 | Базовая защита сервера | 🔲 не начато | [02-basic-hardening.md](02-basic-hardening.md) |
+| 0 | Доступ к серверу после оплаты | ✅ завершено | [00-payment-access.md](00-payment-access.md) |
+| 1 | Первое подключение по SSH | ✅ завершено | [01-first-connection.md](01-first-connection.md) |
+| 2 | Базовая защита сервера | 🟡 в процессе | [02-basic-hardening.md](02-basic-hardening.md) |
 | 3 | Автообновления и базовый мониторинг | 🔲 не начато | [03-monitoring-updates.md](03-monitoring-updates.md) |
-| 4 | VPN (WireGuard) | 🔲 не начато | [04-vpn-wireguard.md](04-vpn-wireguard.md) |
+| 4 | VPN (WireGuard) | ✅ завершено | [04-vpn-wireguard.md](04-vpn-wireguard.md) |
 | 5 | IP-телефония (Asterisk + SIP-транк) | 🔲 не начато | [05-ip-telephony-asterisk.md](05-ip-telephony-asterisk.md) |
 | 6 | Бэкапы | 🔲 не начато | [06-backups.md](06-backups.md) |
+| 7 | Хостинг статичных сайтов (Nginx) | 🔲 не начато | [07-nginx-static-sites.md](07-nginx-static-sites.md) |
 
 Статусы: 🔲 не начато · 🟡 в процессе · ✅ завершено
 
