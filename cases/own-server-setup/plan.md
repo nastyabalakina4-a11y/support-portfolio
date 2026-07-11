@@ -16,6 +16,8 @@
 | 5 | IP-телефония (Asterisk + SIP-транк) | 🔲 не начато | [05-ip-telephony-asterisk.md](05-ip-telephony-asterisk.md) |
 | 6 | Бэкапы | 🔲 не начато | [06-backups.md](06-backups.md) |
 | 7 | Хостинг статичных сайтов (Nginx) | 🔲 не начато | [07-nginx-static-sites.md](07-nginx-static-sites.md) |
+| 8 | Мониторинг сервера (Zabbix) | 🔲 не начато | [08-zabbix-monitoring.md](08-zabbix-monitoring.md) |
+| 9 | Автоматизация процессов (n8n) | 🔲 не начато | [09-n8n-automation.md](09-n8n-automation.md) |
 
 Статусы: 🔲 не начато · 🟡 в процессе · ✅ завершено
 
