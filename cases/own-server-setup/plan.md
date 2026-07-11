@@ -11,7 +11,7 @@
 | 0 | Доступ к серверу после оплаты | ✅ завершено | [00-payment-access.md](00-payment-access.md) |
 | 1 | Первое подключение по SSH | ✅ завершено | [01-first-connection.md](01-first-connection.md) |
 | 2 | Базовая защита сервера | ✅ завершено | [02-basic-hardening.md](02-basic-hardening.md) |
-| 3 | Автообновления и мониторинг (Zabbix — учебная практика) | 🔲 не начато | [03-monitoring-updates.md](03-monitoring-updates.md) |
+| 3 | Автообновления и мониторинг (Zabbix — учебная практика) | 🟡 в процессе | [03-monitoring-updates.md](03-monitoring-updates.md) |
 | 4 | VPN (WireGuard) | ✅ завершено | [04-vpn-wireguard.md](04-vpn-wireguard.md) |
 | 5 | IP-телефония (Asterisk + SIP-транк) | 🔲 не начато | [05-ip-telephony-asterisk.md](05-ip-telephony-asterisk.md) |
 | 6 | Бэкапы | 🔲 не начато | [06-backups.md](06-backups.md) |
