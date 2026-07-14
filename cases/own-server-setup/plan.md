@@ -15,7 +15,7 @@
 | 4 | VPN (WireGuard) | ✅ завершено | [04-vpn-wireguard.md](04-vpn-wireguard.md) |
 | 5 | IP-телефония (Asterisk + SIP-транк) | 🔲 не начато | [05-ip-telephony-asterisk.md](05-ip-telephony-asterisk.md) |
 | 6 | Бэкапы | ✅ завершено | [06-backups.md](06-backups.md) |
-| 7 | Хостинг статичных сайтов (Nginx) | 🔲 не начато | [07-nginx-static-sites.md](07-nginx-static-sites.md) |
+| 7 | Хостинг статичных сайтов (Nginx) | ✅ завершено | [07-nginx-static-sites.md](07-nginx-static-sites.md) |
 | 8 | Автоматизация процессов (n8n) | 🔲 не начато | [08-n8n-automation.md](08-n8n-automation.md) |
 
 Статусы: 🔲 не начато · 🟡 в процессе · ✅ завершено
