@@ -11,6 +11,7 @@
 - [Страховая — сопровождение договоров ДМС](cases/insurance-dms.md)
 - [Траст — удалённая настройка рабочих мест](cases/trust-workplace.md)
 - [Настройка собственного сервера (Alt Linux)](cases/own-server-setup/README.md) — в процессе
+- [Продакшен-настройка n8n по ТЗ (Viver Lab)](cases/viverlab-n8n/README.md) — в процессе
 
 🛠 Навыки
 - Техническая поддержка (L1/L2)
