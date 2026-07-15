@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Настройка сервера для работы</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --bg-soft: #16213e;
+    --card: #1a2545;
+    --text: #e8ecf7;
+    --text-dim: #a4b0d1;
+    --accent: #5eead4;
+    --accent-2: #818cf8;
+    --border: #2a3660;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  header.hero {
+    padding: 80px 0 64px;
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(94,234,212,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(94,234,212,0.35);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, var(--text) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 18px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 32px;
+  }
+  .chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .chip-link {
+    font: inherit;
+    cursor: pointer;
+    color: var(--accent);
+    border-color: rgba(94,234,212,0.35);
+    background: rgba(94,234,212,0.08);
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .chip-link:hover { background: rgba(94,234,212,0.18); transform: translateY(-1px); }
+  .chip-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .hint {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6,10,25,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .lightbox-inner img {
+    max-width: 95vw;
+    max-height: 78vh;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-caption {
+    color: var(--text);
+    font-size: 15px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  section.grid {
+    padding: 40px 0 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 18px;
+  }
+  .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .card p {
+    color: var(--text-dim);
+    font-size: 14.5px;
+  }
+  .card .status {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 0 60px;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent-2); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 56px 0 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Личный учебный проект</span>
+    <h1>Настройка сервера для работы</h1>
+    <p class="subtitle">
+      VPS на Ubuntu 24.04, настроенный с нуля: доступ, защита, VPN, мониторинг,
+      резервное копирование и хостинг — шаг за шагом, вручную, с пониманием каждой команды.
+    </p>
+    <div class="stack">
+      <span class="chip">Ubuntu 24.04</span>
+      <button class="chip chip-link" data-scheme="schemes/ssh-port.png" data-title="Этап 5: смена порта SSH">SSH 🔍</button>
+      <button class="chip chip-link" data-scheme="schemes/basic-hardening.png" data-title="Этап 2: базовая защита сервера">ufw / fail2ban 🔍</button>
+      <button class="chip chip-link" data-scheme="schemes/wireguard.png" data-title="Настройка VPN (WireGuard) на своём сервере">WireGuard 🔍</button>
+      <button class="chip chip-link" data-scheme="schemes/monitoring.png" data-title="Мониторинг сервера">Zabbix 🔍</button>
+      <span class="chip">Nginx</span>
+      <span class="chip">Docker</span>
+      <span class="chip">cron</span>
+    </div>
+    <p class="hint">🔍 — клик открывает схему</p>
+  </div>
+</header>
+
+<section class="grid wrap">
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="10" width="36" height="26" rx="4" stroke="#5eead4" stroke-width="2"/>
+      <path d="M14 20l4 4-4 4" stroke="#5eead4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 28h8" stroke="#5eead4" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h3>Базовая защита сервера</h3>
+    <p>Вход по SSH-ключу вместо пароля, доступ под root закрыт, нестандартный порт SSH,
+       firewall (ufw) и fail2ban против перебора паролей.</p>
+    <span class="status">✓ Завершено</span>
+  </div>
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="17" stroke="#818cf8" stroke-width="2"/>
+      <path d="M24 7v34M7 24h34" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <circle cx="24" cy="24" r="5" fill="#818cf8"/>
+    </svg>
+    <h3>VPN на WireGuard</h3>
+    <p>Собственный VPN-туннель до российского сервера: доступ к российским сервисам
+       из-за границы через маршрутизацию и NAT.</p>
+    <span class="status">✓ Завершено</span>
+  </div>
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 34l8-14 7 9 6-12 15 17" stroke="#5eead4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="14" cy="20" r="2.3" fill="#5eead4"/>
+      <circle cx="21" cy="29" r="2.3" fill="#5eead4"/>
+      <circle cx="27" cy="17" r="2.3" fill="#5eead4"/>
+    </svg>
+    <h3>Мониторинг (Zabbix)</h3>
+    <p>Zabbix Server дома, агент на сервере: метрики CPU, памяти, диска и сети
+       в реальном времени плюс триггеры на критичные события.</p>
+    <span class="status">✓ Завершено</span>
+  </div>
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 6c-9 4-14 4-14 4v14c0 10 6 15 14 18 8-3 14-8 14-18V10s-5 0-14-4z" stroke="#818cf8" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M18 24l4 4 8-9" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h3>Резервное копирование</h3>
+    <p>Ежедневный архив ключевых конфигов по cron, ротация старых копий
+       и проверенное восстановление плюс копия за пределами сервера.</p>
+    <span class="status">✓ Завершено</span>
+  </div>
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="7" y="12" width="34" height="24" rx="3" stroke="#5eead4" stroke-width="2"/>
+      <path d="M7 18h34" stroke="#5eead4" stroke-width="2"/>
+      <circle cx="12" cy="15" r="1.3" fill="#5eead4"/>
+      <circle cx="16" cy="15" r="1.3" fill="#5eead4"/>
+    </svg>
+    <h3>Веб-сервер (Nginx)</h3>
+    <p>Хостинг статичных сайтов через отдельный virtual host —
+       эта страница тоже раздаётся именно так.</p>
+    <span class="status">✓ Завершено</span>
+  </div>
+
+  <div class="card">
+    <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="8" width="32" height="32" rx="6" stroke="#a4b0d1" stroke-width="2" stroke-dasharray="4 4"/>
+      <path d="M18 24h12M24 18v12" stroke="#a4b0d1" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h3>Дальше в планах</h3>
+    <p>IP-телефония (Asterisk + SIP) и автоматизация процессов (n8n) —
+       следующие шаги практики.</p>
+    <span class="status" style="color:#a4b0d1;">○ В процессе</span>
+  </div>
+
+</section>
+
+<footer>
+  <div class="wrap">
+    Учебный проект по настройке VPS — от первого SSH-подключения до мониторинга и бэкапов.<br>
+    Подробный разбор каждого шага: <a href="https://github.com/nastyabalakina4-a11y/support-portfolio" target="_blank" rel="noopener">GitHub-портфолио</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="Схема">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+
+  function openLightbox(src, title) {
+    lightboxImg.src = src;
+    lightboxImg.alt = title;
+    lightboxCaption.textContent = title;
+    lightbox.classList.add('open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  document.querySelectorAll('.chip-link').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      openLightbox(btn.dataset.scheme, btn.dataset.title);
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
